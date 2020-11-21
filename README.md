@@ -1,27 +1,50 @@
-# Alurapic
+# Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.6.
+O Angular é um dos frameworks SPA (Single Page Application) mais famosos, juntamente com o React e o Vue.  
+O conceito de SPA é o que, uma vez carregada a página Index, não será feito nenhum outro carregamento de tela.  
+Não será feito nenhum carregamento de HTML, apenas dados trafegados via HTTP e manipulação do DOM para apresentação desse conteúdo.  
 
-## Development server
+## Componentes
+Componentes são como módulos que criamos, que unem o html, o css e o javascript para ser apresentado posteriormente.  
+Tudo em Angular é um componente.
+Os componentes ficam, por padrão, na pasta **app**.  
+O arquivo app.component.ts informa qual o html, css e gerará também o javascript para esse componente:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```typescript
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  testando = 'Teste';
+}
+```
 
-## Code scaffolding
+**Selector:** é a 'tag' HTML a ser utilizada para retornar todo o componente.
+**templateUrl:** é o corpo html do componente.
+**styleUrls:** é o CSS associado ao componente.
+A export class é o código TS que será transpilado para JS, também associado ao componente.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Convenções  
+Para arquivos usamos letras minúsculas menubar.component.ts, no nome da classe usamos MenubarComponent.  
 
-## Build
+Para preencher valores dentro de tags, utilizando propriedades da classe, usamos o Angular Expression **{{}}**.  
+Dentro das chaves, adicionamos uma propriedade da classe do componente.  
+Quando queremos utilizar as mesmas propriedades de classes para preencher atributos de tags, como src, alt,  
+decoramos esse atributo com **[]** e como valor da propriedade passamos o nome da propriedade da classe:
+**HTML:**
+```html
+<h1>{{testando}}</h1>
+<img [src]="caminhoImagem" [alt]="descricao">
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```
+**Component.ts:**
+```typescript
+export class AppComponent {
+  testando = 'Teste';
+  caminhoImagem = 'https://avatars0.githubusercontent.com/u/51219903?s=400&u=780598fc27ff301d473f70fc285ccb4180cbad07&v=4';
+  descricao = 'teste de imagem';
+}
+```
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
